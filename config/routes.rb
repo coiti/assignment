@@ -5,5 +5,10 @@ Rails.application.routes.draw do
   root "comments#index"
 
   resources :comments
-  resources :users
+
+  resources :users do
+    collection do
+      get :attachable
+    end
+  end
 end

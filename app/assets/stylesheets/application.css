@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+trix-editor .attachment[data-trix-content-type="application/vnd.acdev_assignment.user"] {
+  display: inline;
+}
+
+trix-editor .attachment[data-trix-content-type="application/vnd.acdev_assignment.user"] .attachment__caption {
+  display: none;
+}

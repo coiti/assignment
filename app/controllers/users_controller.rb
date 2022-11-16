@@ -57,6 +57,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def attachable
+    @users =
+      User
+      .name_starts_with(params[:query])
+      .order(:first_name, :last_name)
+      .limit(5)
+
+    respond_to do |format|
+      format.html
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

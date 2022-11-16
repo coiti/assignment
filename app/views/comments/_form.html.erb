@@ -18,7 +18,15 @@
 
   <div class="my-5">
     <%= form.label :content %>
-    <%= form.rich_text_area :content, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+
+    <trix-mentions keys="@" multiword="@" name="query"
+                   data-turbo-frame="attachable_users">
+      <%= form.rich_text_area :content, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      <%= turbo_frame_tag "attachable_users",
+                          src: attachable_users_path,
+                          role: "listbox",
+                          hidden: true %>
+    </trix-mentions>
   </div>
 
   <div class="inline">

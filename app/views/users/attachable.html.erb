@@ -1,0 +1,16 @@
+<%= turbo_frame_tag "attachable_users" do %>
+  <div class="flex flex-col max-w-fit shadow rounded-md">
+    <% @users.each do |user| %>
+      <button id="<%= dom_id user, :attachable %>" type="button"
+              class="block py-1 px-2 text-left first:rounded-t-md
+                     last:rounded-b-md aria-selected:bg-blue-600
+                     aria-selected:text-white"
+              role="option" tabindex="-1"
+              data-trix-attachment-content="<%= user.name %>"
+              data-trix-attachment-content-type="application/vnd.acdev_assignment.user"
+              data-trix-attachment-sgid="<%= user.attachable_sgid %>">
+        <%= user.name %>
+      </button>
+    <% end %>
+  </div>
+<% end %>

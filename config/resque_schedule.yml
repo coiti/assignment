@@ -1,0 +1,4 @@
+---
+UserMentionsNotificationJob:
+  cron: "0 * * * *"
+  queue: default

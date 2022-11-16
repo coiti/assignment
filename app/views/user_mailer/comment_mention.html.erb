@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+  </head>
+  <body>
+    <p>You were mentioned in a comment by <%= @comment.author_name %>.</p>
+    <p>
+      To see the comment, click on this link:<br>
+      <%= link_to url_for(@comment), @comment %>
+    </p>
+  </body>
+</html>

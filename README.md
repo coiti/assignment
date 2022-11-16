@@ -1,24 +1,54 @@
-# README
+# Rails Developer Assignment
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Allows the admin to post comments on behalf of the users they themselves
+control. Kind of like The Sims version of Twitter.
 
-Things you may want to cover:
+## Requirements
 
-* Ruby version
+* Ruby 3.1
+* PostgreSQL
+* Redis
 
-* System dependencies
+## Initialize
 
-* Configuration
+```shell-script
+git clone https://github.com/coiti/assignment.git
+cd assignment
+bundle install
+bin/rails db:create db:migrate
+```
 
-* Database creation
+Start the app with:
 
-* Database initialization
+```shell-script
+bin/dev
+```
 
-* How to run the test suite
+Start the scheduler and worker:
 
-* Services (job queues, cache servers, search engines, etc.)
+```shell-script
+bin/rake rescue:worker
+```
 
-* Deployment instructions
+```shell-script
+bin/rake resque:scheduler
+```
 
-* ...
+To start things up, create a bunch of fake users:
+
+```shell-script
+bin/rake users:seed[100]
+```
+
+## Usage
+
+Go to the main page and post a comment:
+
+[http://localhost:3000/](http://localhost:3000)
+
+To mention someone, type `@` in the text box, and then begin typing their name.
+
+A suggestion box will appear with users that you can mention.
+
+Users will be notified for every new comment that mentions them, every hour, via
+their email address.

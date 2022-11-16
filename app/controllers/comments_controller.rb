@@ -1,9 +1,11 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[ show edit update destroy ]
+  before_action :set_authors, only: %i[ new edit ]
 
   # GET /comments or /comments.json
   def index
-    @comments = Comment.with_rich_text_content
+    @comments =
+      Comment.with_rich_text_content_and_embeds.order(created_at: :desc)
   end
 
   # GET /comments/1 or /comments/1.json
@@ -58,13 +60,19 @@ class CommentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_comment
-      @comment = Comment.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+#
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def comment_params
-      params.require(:comment).permit(:author_id, :content)
-    end
+  # @todo Get author suggestions with Turbo.
+  def set_authors
+    @authors = User.order(:first_name, :last_name)
+  end
+
+  # Only allow a list of trusted parameters through.
+  def comment_params
+    params.require(:comment).permit(:author_id, :content)
+  end
 end

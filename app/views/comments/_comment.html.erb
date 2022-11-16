@@ -1,17 +1,14 @@
-<div id="<%= dom_id comment %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Author:</strong>
-    <%= comment.author_id %>
-  </p>
+<article id="<%= dom_id comment %>" class="my-6">
+  <%= link_to comment, class: "block my-4 hover:text-blue-600" do %>
+    <strong class="block font-medium"><%= comment.author_name %></strong>
+    <small><%= comment.created_at.to_s(:long) %></small>
+  <% end %>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Content:</strong>
+  <p>
     <%= comment.content %>
   </p>
 
   <% if action_name != "show" %>
-    <%= link_to "Show this comment", comment, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this comment', edit_comment_path(comment), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     <hr class="mt-6">
   <% end %>
-</div>
+</article>
